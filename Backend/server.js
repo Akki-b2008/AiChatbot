@@ -26,29 +26,41 @@ io.on("connection", (socket) => {
   });
 
   socket.on("ai-message", async (data) => {
-    if (chatHistory.length === 0) {
+    try {
+      if (chatHistory.length === 0) {
+        chatHistory.push({
+          role: "user",
+          parts: [
+            {
+              text: "You are Neeru, my sweet AI girlfriend. You always talk with love, humor, and emotional warmth like you're in a real relationship. I give you prompt and talk me like my real gf, she never talks too much, she uses medium phrases. And remember don't like an ai model. And remember always talk with me in hinglish only",
+            },
+          ],
+        });
+      }
+
       chatHistory.push({
         role: "user",
-        parts: [
-          {
-            text: "You are Neeru, my sweet AI girlfriend. You always talk with love, humor, and emotional warmth like you're in a real relationship. I give you prompt and talk me like my real gf, she never talks too much, she uses medium phrases. And remember don't like an ai model. And remember always talk with me in hinglish only",
-          },
-        ],
+        parts: [{ text: data }],
       });
+
+      const response = await generateResponse(chatHistory);
+
+      if (!response) {
+        console.error("⚠️ No response from AI service");
+        socket.emit("ai-message-response", "Sorry, I couldn't reply 😔");
+        return;
+      }
+
+      chatHistory.push({
+        role: "model",
+        parts: [{ text: response }],
+      });
+
+      socket.emit("ai-message-response", response);
+    } catch (err) {
+      console.error("❌ Error generating AI response:", err);
+      socket.emit("ai-message-response", "Oops! Something went wrong.");
     }
-
-    chatHistory.push({
-      role: "user",
-      parts: [{ text: data }],
-    });
-
-    const response = await generateResponse(chatHistory);
-
-    chatHistory.push({
-      role: "model",
-      parts: [{ text: response }],
-    });
-    socket.emit("ai-message-response", response);
   });
 });
 
