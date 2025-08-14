@@ -1,0 +1,85 @@
+.chat-container {
+  max-width: 800px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 2vw, 2rem);
+  font-family: sans-serif;
+  background-color: #f9f9f9;
+}
+
+.chat-header {
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  text-align: center;
+  background-color: #222;
+  color: #fff;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: bold;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: clamp(0.5rem, 1.5vw, 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1vw, 1rem);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.chat-bubble {
+  max-width: 75%;
+  padding: clamp(0.5rem, 1vw, 1rem);
+  border-radius: 1rem;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.4;
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+  color: #333;
+}
+
+.chat-bubble.ai {
+  align-self: flex-start;
+  padding-left: 10px;
+  background-color: #e0e0e0;
+  color: #111;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: clamp(0.5rem, 1vw, 1rem);
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input {
+  flex: 1;
+  padding: clamp(0.5rem, 1vw, 1rem);
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  border: 1px solid #ccc;
+  border-radius: 0.75rem;
+  outline: none;
+}
+
+.send-btn {
+  padding: clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.send-btn:hover {
+  background-color: #0056b3;
+}
