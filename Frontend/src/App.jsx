@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { io } from "socket.io-client";
 import "./App.css";
- 
+
 function App() {
   const socket = useRef(null);
   const [messages, setMessages] = useState([
@@ -9,46 +9,49 @@ function App() {
   ]);
   const [input, setInput] = useState("");
   const chatEndRef = useRef(null);
- 
+
   // ✅ Connect to the socket server at localhost:3000
   useEffect(() => {
-    socket.current = io("http://localhost:3000");
- 
+    socket.current = io(
+      window.location.hostname === "localhost"
+        ? "http://localhost:3000"
+        : "https://aichatbot-tlzb.onrender.com/"
+    );
     // Optional: log connection status
     socket.current.on("connect", () => {
       console.log("Connected to socket server");
     });
- 
+
     // Listen for AI message from server
     socket.current.on("ai-message-response", (text) => {
       setMessages((msgs) => [...msgs, { sender: "ai", text }]);
     });
- 
+
     // Cleanup
     return () => {
       socket.current.disconnect();
     };
   }, []);
- 
+
   // Scroll to bottom on new message
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
- 
- const handleSend = (e) => {
+
+  const handleSend = (e) => {
     e.preventDefault();
     if (!input.trim()) return;
- 
+
     const userText = input.trim();
- 
+
     // Show user message
     setMessages((msgs) => [...msgs, { sender: "user", text: userText }]);
     setInput("");
- 
+
     // Emit message to server
     socket.current.emit("ai-message", userText);
   };
- 
+
   return (
     <div className="chat-container">
       <div className="chat-header">
@@ -80,7 +83,6 @@ function App() {
     </div>
   );
 }
- 
+
 export default App;
- 
- 
+
