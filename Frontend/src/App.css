@@ -33,8 +33,8 @@
 
 .chat-bubble {
   max-width: 75%;
-  padding: clamp(0.5rem, 1vw, 1rem);
-  border-radius: 1rem;
+  padding: clamp(0.5rem, 2vw, .7rem) clamp(0.9rem, 1vw, 1.2rem);
+  border-radius: 0.5rem;
   font-size: clamp(0.875rem, 2vw, 1rem);
   line-height: 1.4;
 }
@@ -47,7 +47,6 @@
 
 .chat-bubble.ai {
   align-self: flex-start;
-  padding-left: 10px;
   background-color: #e0e0e0;
   color: #111;
 }

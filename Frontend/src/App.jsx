@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   const socket = useRef(null);
   const [messages, setMessages] = useState([
-    { sender: "ai" },
+    { sender: "ai", text : "im waiting for you ..." },
   ]);
   const [input, setInput] = useState("");
   const chatEndRef = useRef(null);
@@ -24,7 +24,7 @@ function App() {
 
     // Listen for AI message from server
     socket.current.on("ai-message-response", (text) => {
-      setMessages((msgs) => [...msgs, { sender: "ai", text }]);
+      setMessages((msgs) => [...msgs, { sender: "", text }]);
     });
 
     // Cleanup
