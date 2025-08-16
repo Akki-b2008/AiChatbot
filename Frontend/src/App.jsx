@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <span className="chat-title">AI Girlfriend</span>
+        <span className="chat-title">Angel Priya</span>
       </div>
 
       <div className="chat-messages">
