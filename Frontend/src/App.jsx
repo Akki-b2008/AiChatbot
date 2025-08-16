@@ -5,8 +5,9 @@ import "./App.css";
 function App() {
   const socket = useRef(null);
   const [messages, setMessages] = useState([
-    { sender: "ai", text : "im waiting for you ..." },
+    { sender: "ai", text: "im waiting for you ..." },
   ]);
+
   const [input, setInput] = useState("");
   const chatEndRef = useRef(null);
 
@@ -55,19 +56,25 @@ function App() {
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <span className="chat-title">AI Chatbot</span>
+        <span className="chat-title">AI Girlfriend</span>
       </div>
+
       <div className="chat-messages">
         {messages.map((msg, idx) => (
-          <div
-            key={idx}
-            className={`chat-bubble ${msg.sender === "user" ? "user" : "ai"}`}
-          >
-            {msg.text}
+          <div key={idx} className="chat-message-wrapper">
+            <div
+              className={`chat-bubble ${msg.sender === "user" ? "user" : "ai"}`}
+            >
+              {msg.text}
+            </div>
+            <span className="chat-label">
+              {msg.sender === "user" ? "me" : "angel priya"}
+            </span>
           </div>
         ))}
         <div ref={chatEndRef} />
       </div>
+
       <form className="chat-input-area" onSubmit={handleSend}>
         <input
           className="chat-input"
