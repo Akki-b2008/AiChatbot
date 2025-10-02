@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   const socket = useRef(null);
   const [messages, setMessages] = useState([
-    { sender: "ai", text: "im waiting for you ..." },
+    { sender: "ai", text: "Aur btao Betaji..." },
   ]);
 
   const [input, setInput] = useState("");
@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <span className="chat-title">Angel Priya</span>
+        <span className="chat-title">Sharma JI</span>
       </div>
 
       <div className="chat-messages">
