@@ -68,7 +68,7 @@ function App() {
               {msg.text}
             </div>
             <span className="chat-label">
-              {msg.sender === "user" ? "me" : "angel priya"}
+              {msg.sender === "user" ? "me" : "uncle ji"}
             </span>
           </div>
         ))}
