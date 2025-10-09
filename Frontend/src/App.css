@@ -101,6 +101,7 @@
 }
 
 .chat-bubble.ai {
+  width: 80%;
   align-self: flex-start;
   background: #bcb8b873;
   color: #111;
